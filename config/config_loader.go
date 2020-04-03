@@ -40,7 +40,7 @@ var (
 	providerConfig    *ProviderConfig
 	metricConfig      *MetricConfig
 	applicationConfig *ApplicationConfig
-	maxWait           = 3
+	maxWait           = 10
 	confRouterFile    string
 )
 
