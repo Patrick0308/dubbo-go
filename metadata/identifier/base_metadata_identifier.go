@@ -61,14 +61,16 @@ func (mdi *BaseMetadataIdentifier) getIdentifierKey(params ...string) string {
 // getFilePathKey returns string that format is metadata/path/Version/Group/Side/param1/param2...
 func (mdi *BaseMetadataIdentifier) getFilePathKey(params ...string) string {
 	path := serviceToPath(mdi.ServiceInterface)
-
-	return constant.DEFAULT_PATH_TAG +
-		withPathSeparator(path) +
-		withPathSeparator(mdi.Version) +
-		withPathSeparator(mdi.Group) +
-		withPathSeparator(mdi.Side) +
-		joinParams(constant.PATH_SEPARATOR, params)
-
+	if path == "" {
+		return constant.DEFAULT_PATH_TAG
+	} else {
+		return constant.DEFAULT_PATH_TAG +
+			withPathSeparator(path) +
+			withPathSeparator(mdi.Version) +
+			withPathSeparator(mdi.Group) +
+			withPathSeparator(mdi.Side) +
+			joinParams(constant.PATH_SEPARATOR, params)
+	}
 }
 
 // serviceToPath uss URL encode to decode the @serviceInterface
